@@ -1,0 +1,32 @@
+def ordMezcla(lst):
+    if len(lst) == 1:
+        return lst
+    else:
+        mitad = len(lst)//2
+        izq = lst[:mitad]
+        der = lst[mitad:]
+        izq = ordMezcla(izq)
+        der = ordMezcla(der)
+        
+        nuelis=[]
+        while izq and der:
+            if izq[0] < der[0]:
+                nuelis.append(izq[0])
+                del izq[0]
+            else:
+                nuelis.append(der[0])
+                del der[0]
+        
+        while izq:
+            nuelis.append(izq[0])
+            del izq[0]
+            
+        while der:
+            nuelis.append(der[0])
+            del der[0]
+        
+        return nuelis
+
+lista = [14,7,3,12,9,11,6,2]
+ordenada = ordMezcla(lista)
+print(ordenada)
